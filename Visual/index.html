@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dijkstra Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/panels.css" />
+  <link rel="stylesheet" href="css/controls.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-brand">
+      <span class="brand-accent">⬡</span>
+      <span class="brand-title">Dijkstra Visualizer</span>
+    </div>
+    <div class="header-desc">Step through shortest-path — watch every array, heap &amp; edge update live</div>
+  </header>
+
+  <main class="app-grid">
+
+    <!-- Code Panel -->
+    <section class="panel panel--code" id="panel-code">
+      <div class="panel-label">Algorithm</div>
+      <div class="code-scroll" id="code-scroll">
+        <pre class="code-pre" id="code-pre"></pre>
+      </div>
+      <div class="code-controls">
+        <button class="btn btn--icon" id="btn-prev" title="Previous step">&#8592;</button>
+        <button class="btn btn--icon" id="btn-auto" title="Auto play">&#9654;</button>
+        <button class="btn btn--icon" id="btn-next" title="Next step">&#8594;</button>
+        <button class="btn btn--ghost" id="btn-reset" title="Reset">&#8635; Reset</button>
+        <label class="speed-label">
+          Speed
+          <input type="range" min="100" max="2000" value="800" id="speed-sl" class="speed-range" />
+        </label>
+      </div>
+      <div class="status-bar" id="status-bar">Press Next to begin</div>
+    </section>
+
+    <!-- Graph Canvas -->
+    <section class="panel panel--graph">
+      <div class="panel-label">Graph <span class="panel-hint">— click node to change source</span></div>
+      <canvas id="graph-canvas"></canvas>
+      <div class="legend">
+        <span class="legend-item legend-item--source">Source</span>
+        <span class="legend-item legend-item--active">Processing</span>
+        <span class="legend-item legend-item--neighbor">Neighbor</span>
+        <span class="legend-item legend-item--visited">Visited</span>
+      </div>
+    </section>
+
+    <!-- Arrays: Distance + Predecessors -->
+    <section class="panel panel--arrays">
+      <div class="arrays-grid">
+        <div class="array-block" id="dist-block">
+          <div class="panel-label">distance[]</div>
+          <div class="kv-list" id="dist-table"></div>
+        </div>
+        <div class="array-block" id="pred-block">
+          <div class="panel-label">predecessors[]</div>
+          <div class="kv-list" id="pred-table"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Heap Panel -->
+    <section class="panel panel--heap">
+      <div class="panel-label">Min-Heap <span class="panel-hint">— top = next to pop</span></div>
+      <div class="heap-items" id="heap-view"></div>
+    </section>
+
+    <!-- Editor Panel -->
+    <section class="panel panel--editor">
+      <div class="panel-label">Edit Graph &amp; Source</div>
+      <div class="editor-body">
+        <div class="editor-field">
+          <label class="field-label" for="graph-input">Adjacency list <span class="field-hint">{"A":[["B",10],["D",5]],"C":[]}</span></label>
+          <textarea id="graph-input" class="code-textarea" spellcheck="false">{"A":[["B",10],["D",5]],"B":[["C",1]],"C":[],"D":[["B",3],["C",9]],"E":[["D",2]]}</textarea>
+        </div>
+        <div class="editor-actions">
+          <div class="field-group">
+            <label class="field-label" for="src-sel">Source node</label>
+            <select id="src-sel" class="select"></select>
+          </div>
+          <button class="btn btn--primary" onclick="applyGraph()">Apply &amp; Run &#8594;</button>
+        </div>
+        <div class="field-error" id="graph-err"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/code.js"></script>
+  <script src="js/heap.js"></script>
+  <script src="js/dijkstra.js"></script>
+  <script src="js/canvas.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
