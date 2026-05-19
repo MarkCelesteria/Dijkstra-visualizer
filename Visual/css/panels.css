@@ -299,13 +299,14 @@
   transition: background 0.25s, border-color 0.25s;
 }
 .var-chip .vc-key {
-  font-size: 9px;
-  color: var(--text-dim);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
   font-family: var(--font-mono);
-  letter-spacing: .05em;
+  letter-spacing: .06em;
 }
 .var-chip .vc-val {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   font-family: var(--font-mono);
   color: var(--text);
@@ -314,7 +315,10 @@
   background: var(--accent-lo);
   border-color: var(--accent);
 }
+.var-chip--active .vc-key { color: var(--accent); opacity: 0.75; }
 .var-chip--active .vc-val { color: var(--accent); }
+
+.var-chip--changed .vc-key { color: var(--amber); opacity: 0.75; }
 
 .var-chip--changed {
   background: var(--amber-lo);
