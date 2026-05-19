@@ -68,7 +68,20 @@ function applyGraph() {
   const errEl = document.getElementById('graph-err');
   errEl.textContent = '';
   try {
-    const parsed = JSON.parse(raw);
+    let parsed;
+
+    // Try JSON first
+    try {
+      parsed = JSON.parse(raw);
+    } catch (_) {
+      // Try Python dict format: {'A': [('B', 10)], ...}
+      const pythonified = raw
+        .replace(/'/g, '"')                        // single → double quotes
+        .replace(/\(\s*("[\w\d]+?")\s*,\s*(\d+)\s*\)/g, '[$1,$2]')  // ('B',10) → ["B",10]
+        .replace(/,\s*([\}\]])/g, '$1');           // trailing commas
+      parsed = JSON.parse(pythonified);
+    }
+
     graph = {};
     for (const k in parsed) {
       graph[k] = (parsed[k] || []).map(e => [String(e[0]), Number(e[1])]);

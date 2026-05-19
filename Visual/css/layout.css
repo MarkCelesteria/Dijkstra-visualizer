@@ -35,7 +35,7 @@
 /* ── main 3-column grid ── */
 .app-grid {
   display: grid;
-  grid-template-columns: 340px 1fr 1fr;
+  grid-template-columns: auto 1fr 1fr;
   grid-template-rows: 1fr 280px auto;
   gap: var(--gap);
   padding: var(--gap);
