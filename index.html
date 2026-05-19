@@ -65,6 +65,9 @@
           <div class="kv-list" id="pred-table"></div>
         </div>
       </div>
+      <!-- Current Variables Row -->
+      <div class="vars-label">Current Variables</div>
+      <div class="vars-row" id="vars-row"></div>
     </section>
 
     <!-- Heap Panel -->
@@ -79,7 +82,15 @@
       <div class="editor-body">
         <div class="editor-field">
           <label class="field-label" for="graph-input">Adjacency list <span class="field-hint">{"A":[["B",10],["D",5]],"C":[]}</span></label>
-          <textarea id="graph-input" class="code-textarea" spellcheck="false">{"A":[["B",10],["D",5]],"B":[["C",1]],"C":[],"D":[["B",3],["C",9]],"E":[["D",2]]}</textarea>
+          <textarea id="graph-input" class="code-textarea" spellcheck="false">
+{
+  "A":[["B",10],["D",5]],
+  "B":[["C",1]],
+  "C":[],
+  "D":[["B",3],["C",9]],
+  "E":[["D",2]]
+}
+</textarea>
         </div>
         <div class="editor-actions">
           <div class="field-group">

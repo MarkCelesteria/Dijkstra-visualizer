@@ -36,7 +36,7 @@
 .app-grid {
   display: grid;
   grid-template-columns: 340px 1fr 1fr;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: 1fr 280px auto;
   gap: var(--gap);
   padding: var(--gap);
   height: calc(100vh - 53px);
@@ -64,6 +64,7 @@
 .panel--arrays {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
+  overflow: visible
 }
 
 /* Heap: mid-right */

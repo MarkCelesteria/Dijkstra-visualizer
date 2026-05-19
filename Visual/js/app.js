@@ -19,6 +19,7 @@ function applyStep(idx) {
   renderPredTable(s.pred, s.activeNode, s.changedPred);
   renderHeap(s.heap);
   drawGraph(graph, source, s.activeNode, s.activeNeighbor, s.dist);
+  renderVars(s.vars, s.changedKeys);
 
   document.getElementById('btn-prev').disabled = idx <= 0;
   document.getElementById('btn-next').disabled = idx >= steps.length - 1;

@@ -52,3 +52,20 @@ function populateSourceSelect(graph, currentSource) {
     .map(v => `<option value="${v}"${v === currentSource ? ' selected' : ''}>${v}</option>`)
     .join('');
 }
+
+function renderVars(vars, changedKeys) {
+  const el = document.getElementById('vars-row');
+  if (!vars || !Object.keys(vars).length) {
+    el.innerHTML = '<span style="font-size:11px;color:var(--text-dim);font-family:var(--font-mono)">—</span>';
+    return;
+  }
+  el.innerHTML = Object.entries(vars).map(([k, v]) => {
+    const changed = changedKeys && changedKeys.includes(k);
+    const cls = changed ? 'var-chip var-chip--changed' : 'var-chip var-chip--active';
+    const display = v === Infinity ? '∞' : (v === null ? 'None' : v);
+    return `<div class="${cls}">
+      <span class="vc-key">${k}</span>
+      <span class="vc-val">${display}</span>
+    </div>`;
+  }).join('');
+}
